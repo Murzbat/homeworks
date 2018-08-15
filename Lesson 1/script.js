@@ -1,6 +1,6 @@
 var budget = +prompt("Ваш бюджет на месяц?");
 //console.log(typeof(budget));
-if (typeof(budget)==!number)
+
 
 var name = prompt("Название вашего магазина?");
 
