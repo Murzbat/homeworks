@@ -2,10 +2,8 @@ let money,
 	name,
 	time,
 	price,
-	peopname
-let	employers={
-		peoplename:[]
-	};
+	peopname;
+let currentprice=price;
 
 function start(){
 	money = prompt("Ваш бюджет?");
@@ -72,25 +70,32 @@ function workTime(time){
 workTime(18);
 
 function dayBudget(budget){
-	return budget/30
+	return budget/30;
 }
 
 function discountSystem(discount){
-	if (discount) 
-		price=price*0.8
+	if (discount){
+		currentprice=price*0.8;
+	} else {
+		currentprice=price;
+	}
 }
 
 //hiring employees function
 function employees(){
-	for (i=0; i<4; i++){
+	for (let i=0; i<4; i++){
 		peopname=prompt('Имя сотрудника');
 		console.log(i);
 		if (peopname != "" || typeof(peopname) !== null || typeof(peopname) === "string"){
-			employers.peoplename[i]=(i+1)+ ' . '+peopname;
+			mainList.employers[i]=(i+1)+ ' . '+peopname;
 		}else {
 			i--;
 		}
 	}
 }
+
+employees();
+console.log(mainList);
+
 
 alert(dayBudget(mainList.budget));
