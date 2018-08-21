@@ -1,6 +1,6 @@
 let money = prompt("Ваш бюджет?");
 let name = prompt("Название вашего магазина?");
-
+let time = 19;
 let mainList = {
 	budget: money,
 	shopName: name,
@@ -35,6 +35,18 @@ for (let i = 0; i < 5; i++) {
 
 
 }
+
+if (time < 0) {
+	console.log('Такого не может быть');
+} else if (time > 8 && time < 20) {
+	console.log('Время работать!');
+	} else if (time < 24){
+		console.log('Уже слишком поздно!');
+		} else {
+			console.log('В сутках только 24 часа!');
+		};
+alert(mainList.budget / 30);
+console.log(mainList);
 
 /*let i = 0; // While
 
@@ -90,5 +102,3 @@ do {
 
 }
 while (i<5);*/
-
-console.log(mainList);
