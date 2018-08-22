@@ -72,7 +72,7 @@ workTime(18);
 function dayBudget(budget){
 	return budget/30;
 }
-
+//
 function discountSystem(discount){
 	if (discount){
 		currentprice=price*0.8;
@@ -80,14 +80,14 @@ function discountSystem(discount){
 		currentprice=price;
 	}
 }
-
+console.log(discountSystem());
 //hiring employees function
 function employees(){
-	for (let i=0; i<4; i++){
+	for (let i=1; i<5; i++){
 		peopname=prompt('Имя сотрудника');
 		console.log(i);
 		if (peopname != "" || typeof(peopname) !== null || typeof(peopname) === "string"){
-			mainList.employers[i]=(i+1)+ ' . '+peopname;
+			mainList.employers[i]=peopname;
 		}else {
 			i--;
 		}
