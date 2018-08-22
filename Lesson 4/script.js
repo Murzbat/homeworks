@@ -122,12 +122,7 @@ let mainList = {
 			}
 		
 		}
-		alert(mainList.ShopItems);
-		let lenShopItems=mainList.ShopItems.length
-		for (let i = 1; i<(lenShopItems+3);i++){
-			mainList.ShopItems[lenShopItems+2-i]=mainList.ShopItems[lenShopItems+1-i]
-		}
-		alert(mainList.ShopItems);
+		
 	
 
 	}
@@ -139,8 +134,13 @@ document.write("У нас в магазине вы можете приобрес
 mainList.ShopItems.forEach(function(item,i,arr) {
 
 	console.log(i+":" + item + "(массив: " + arr + ")")
-	document.write(i+":" + item);	
-	})
+	document.write(i+1+":" + item);	
+})
+console.log("Наш магазин включает в себя:");
+for(let key in mainList) {
+	console.log(key/*+ "который имеет значение" + mainList[key]*/);
+
+}
 
 		
 
