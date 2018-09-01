@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', function(){
 		overlay = document.querySelector('.overlay'),
 		close = document.querySelector('.popup-close'),
 		discription_btn = document.querySelectorAll('.description-btn');
-	console.log(discription_btn);
+	//console.log(discription_btn);
 
 	more.addEventListener('click', function(){
 		this.classList.add('more-splash');
@@ -130,6 +130,8 @@ window.addEventListener('DOMContentLoaded', function(){
 	message.failure = "Что-то пошло не так...";
 
 	let form = document.getElementsByClassName('main-form')[0],
+		contact_form = document.getElementsByClassName('contact')[0],
+		input_contact = contact_form.getElementsByTagName('input'),
 		input = form.getElementsByTagName('input'),
 		statusMessage = document.createElement('div');
 		statusMessage.classList.add('status');
@@ -138,15 +140,25 @@ window.addEventListener('DOMContentLoaded', function(){
 			event.preventDefault();
 			form.appendChild(statusMessage);
 
+		contact_form.addEventListener('submit', function(event){
+			event.preventDefault();
+			contact_form.appendChild(statusMessage);
+
+		})
+
 			//AJAX
 			let request = new XMLHttpRequest();
 			request.open("POST", 'server.php');
 
 			request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-			let formData = new FormData(form);
+			let formData = new FormData(form),
+				contact_formData = new FormData(contact_form);
 
 			request.send(formData);
+			request.send(contact_formData);
+
+
 
 			request.onreadystatechange = function() {
 				if (request.readyState < 4) {
@@ -165,6 +177,9 @@ window.addEventListener('DOMContentLoaded', function(){
 			for (let i = 0; i < input.length; i++) {
 				input[i].value = '';
 				//Очищаем поля ввода
+			}
+			for (let i = 0; i < input_contact.length; i++) {
+				input_contact[i].value = '';
 			}
 
 
