@@ -209,12 +209,6 @@ window.addEventListener('DOMContentLoaded', function(){
 
 		});
 
-		function checkingNum(num) {
-  			while ((num ^ 0) !== num || typeof(num) !== Number ){
-  				alert('Введите число!');
-  			}
-		}
-
 		//Slider
 
 		let slideIndex = 1,
@@ -231,10 +225,10 @@ window.addEventListener('DOMContentLoaded', function(){
 				if (n > slides.length) {
 					slideIndex = 1;
 
-				};
+				}
 				if (n < 0) {
 					slideIndex = slide.length;
-				};
+				}
 
 				for (let i = 0; i < slides.length; i++){
 					slides[i].style.display = 'none';
@@ -243,7 +237,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
 				for (let i = 0; i < dots.length; i++){
 					dots[i].classList.remove('dot-active');
-				};
+				}
 				
 				slides[slideIndex - 1].style.display = 'block';
 				dots[slideIndex - 1].classList.add('dot-active');
@@ -251,17 +245,17 @@ window.addEventListener('DOMContentLoaded', function(){
 			}
 
 			function plusSlides (n) {
-				showSlides(slideIndex += n)
+				showSlides(slideIndex += n);
 			}
 			function currentSlide(n) {
 				showSlides(slideIndex = n);
 			}
 			prev.addEventListener('click', function(){
-				plusSlides(-1)
+				plusSlides(-1);
 			});
 
 			next.addEventListener('click', function(){
-				plusSlides(1)
+				plusSlides(1);
 			});
 
 			dotsWrap.addEventListener('click', function (event) {
@@ -270,7 +264,7 @@ window.addEventListener('DOMContentLoaded', function(){
 						currentSlide(i);
 					}
 				}
-			})
+			});
 
 		//Calc
 
@@ -291,7 +285,7 @@ window.addEventListener('DOMContentLoaded', function(){
 				total = (daysSum + personsSum)*4000;
 				persons.onkeyup = function (input){
       				  return this.value = this.value.replace(/[^\d]/g, '');
-				}
+				};
 				if (restDays.value == '' || ((+restDays.value ^ 0)) !== +restDays.value || ((+persons.value ^ 0)) !== +persons.value || daysSum == 0 || personsSum == 0 ){
 					totalValue.innerHTML = 0;
 					if (((+persons.value ^ 0)) !== +persons.value || (+persons.value) == 0 ) {
@@ -304,14 +298,14 @@ window.addEventListener('DOMContentLoaded', function(){
 					totalValue.innerHTML = total;
 				}
 
-			})
+			});
 
 			restDays.addEventListener('change', function(){
 				daysSum = +this.value;
 				total = (daysSum + personsSum)*4000;
 				restDays.onkeyup = function (input){
       				  return this.value = this.value.replace(/[^\d]/g, '');
-				}
+				};
 				if (persons.value == '' || ((+persons.value ^ 0)) !== +persons.value || ((+restDays.value ^ 0)) !== +restDays.value || daysSum == 0 || personsSum == 0 ){
 					totalValue.innerHTML = 0;
 					if (((+restDays.value ^ 0)) !== +restDays.value) {
@@ -330,6 +324,6 @@ window.addEventListener('DOMContentLoaded', function(){
 					let a = total;
 					totalValue.innerHTML = a* this.options[this.selectedIndex].value;
 				}
-			})
+			});
 
 });
