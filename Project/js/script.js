@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			// calling modal window	
 			
 			phone[i].addEventListener('click', function(){
-			
+				event.preventDefault();
 				modalForm2.style.display = 'block';
 				document.body.style.overflow = 'hidden'; 
 
@@ -143,5 +143,12 @@ window.addEventListener('DOMContentLoaded', function(){
 			})
 		}
 		
+	//Timer
+
+	
+
+
+
+
 })
 
