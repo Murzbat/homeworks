@@ -617,7 +617,17 @@ textarea:focus {
   line-height: 1.6;
 }
 .sale .eTimer {
-  text-align: center;
+  text-align: left;
+  margin-top: 35px;
+  font-size: 60px;
+  color: #000000;
+
+}
+.sale .Timer_text{
+  text-align: left;
+  margin-top: 30px;
+  font-size: 35px;
+  color: #000000;
 }
 /*Contacts*/
 .contacts {
