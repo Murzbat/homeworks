@@ -239,12 +239,32 @@ window.addEventListener('DOMContentLoaded', function(){
 	for (let i = 0; i < glazing_block.length; i++){
 		glazing_block[i].addEventListener('click', function(){
 			ShowTabContent(i);
-			tab[i-1].classList.remove('active');
-			tab[i].classList.add('active');
-
+		for (let j = 0; j < glazing_block.length; j++){	
+			
+			tab[j].classList.remove('active');
+		
+		}
+		
+		tab[i].classList.add('active');
+		
 		})
 	}
-	
 
+
+	//Calc
+
+	let glazing_price = document.getElementsByClassName('glazing_price'),
+		calc_btn = [],
+		calc = document.getElementsByClassName('popup_calc')[0];
+
+	for (let i = 0; i < glazing_price.length; i++){
+		calc_btn[i] = glazing_price[i].getElementsByClassName('button')[0];
+	}
+	console.log(calc_btn);
+	for (let i = 0; i < glazing_price; i++){
+		calc_btn[i].addEventListener('click', function(){
+			calc.style.display = 'block';
+		})
+	}
 })
 
