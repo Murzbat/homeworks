@@ -208,6 +208,47 @@ window.addEventListener('DOMContentLoaded', function(){
 			return a;
 	}
 
+	// Tabs
 
+	let glazing_block = document.getElementsByClassName('glazing_block'),
+		glazing_content = [];
+		glazing_slider = document.getElementsByClassName('glazing_slider')[0];
+	for (let i = 0; i < 5; i++){
+		glazing_content[i] = document.getElementById('tab'+i);
+	}
+	console.log(glazing_content);
+	console.log(glazing_content[4])
+
+	function HideTabContent(a){
+		for (let i = a; i < 5; i++){
+			glazing_content[i].style.display = 'none';
+		}
+	}
+    
+    HideTabContent(1);
+	
+	function ShowTabContent(b){
+		
+		HideTabContent(0);
+		glazing_content[b].style.display = 'block';
+
+	}
+
+	function addClassActive(c){
+		for (let i = 0; i < glazing_block.length; i++ ){
+			glazing_block[i].classList.remove('active');
+		}
+		glazing_block[c].classList.add('active')
+	}
+
+	
+	for (let i = 0; i < glazing_block.length; i++){
+		glazing_block[i].addEventListener('click', function(){
+			ShowTabContent(i);
+			addClassActive(i)
+
+		})
+	}
+	
 })
 
