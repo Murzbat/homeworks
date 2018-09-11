@@ -211,13 +211,15 @@ window.addEventListener('DOMContentLoaded', function(){
 	// Tabs
 
 	let glazing_block = document.getElementsByClassName('glazing_block'),
-		glazing_content = [];
+		glazing_content = [],
+		tab = [],
 		glazing_slider = document.getElementsByClassName('glazing_slider')[0];
+	
 	for (let i = 0; i < 5; i++){
 		glazing_content[i] = document.getElementById('tab'+i);
+		tab[i] = glazing_block[i].getElementsByTagName('a')[0];
 	}
-	console.log(glazing_content);
-	console.log(glazing_content[4])
+
 
 	function HideTabContent(a){
 		for (let i = a; i < 5; i++){
@@ -234,21 +236,15 @@ window.addEventListener('DOMContentLoaded', function(){
 
 	}
 
-	function addClassActive(c){
-		for (let i = 0; i < glazing_block.length; i++ ){
-			glazing_block[i].classList.remove('active');
-		}
-		glazing_block[c].classList.add('active')
-	}
-
-	
 	for (let i = 0; i < glazing_block.length; i++){
 		glazing_block[i].addEventListener('click', function(){
 			ShowTabContent(i);
-			addClassActive(i)
+			tab[i-1].classList.remove('active');
+			tab[i].classList.add('active');
 
 		})
 	}
 	
+
 })
 
