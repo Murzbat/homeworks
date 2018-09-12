@@ -1,11 +1,7 @@
 window.addEventListener('DOMContentLoaded', function(){
 
 	
-   
-  
-
-	
-// modal
+ // modal
 
 	let header_btn = document.querySelector('.header_btn'),
 		modalForm1 = document.querySelector('.popup_engineer'),
@@ -88,7 +84,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			statusMessage = document.createElement('div');
 		statusMessage.classList.add('status');
 		
-		for (let i = 0; i < form.length; i++){
+		for (let i = 0; i < form.length-1; i++){
 			input[i] = [];
 			for (let j = 0; j < 2; j++){	
 				input[i] = form[i].getElementsByTagName('input');
@@ -98,7 +94,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
 		//цикл для того,чтобы обращаться к каждому модальному окну
-		for (let i = 0; i < form.length; i++){
+		for (let i = 0; i < form.length-1; i++){
 			//запрет на ввод всего кроме цифр
 			input[i][1].onkeyup = function (input){
       				  return this.value = this.value.replace(/[^\d]/g, '');
@@ -311,7 +307,30 @@ window.addEventListener('DOMContentLoaded', function(){
 		icons = balcon_icons.getElementsByTagName('a'),
 		big_img = document.getElementsByClassName('big_img')[0],
 		big_icons = big_img.getElementsByTagName('img'),
-		icons_img = [];
+		input_calc1 = calc.getElementsByClassName('form-control')
+		icons_img = [],
+		next_btn = calc.getElementsByClassName('button')[0],
+
+
+		calc_profile = document.getElementsByClassName('popup_calc_profile')[0],
+		profile_calc_close = document.getElementsByClassName('popup_calc_profile_close')[0],
+		checkbox_profile = calc_profile.getElementsByClassName('checkbox-custom'),
+		checkbox_label = calc_profile.getElementsByTagName('label'),
+		calc_profile_types = calc_profile.getElementsByTagName('options'),
+		select_profile = calc_profile.getElementsByTagName('select')[0],
+		next_btn_profile = calc_profile.getElementsByClassName('button')[0],
+		calc_end = document.getElementsByClassName('popup_calc_end')[0],
+		calc_options = {
+			name,
+			telephone: '',
+			balconType: "type1",
+			width,
+			height,
+			checkbox: " ",
+			select_profile: "tree"
+		};
+	console.log(next_btn_profile);
+
 
 	for (let i = 0; i < icons.length; i++){
 		
@@ -341,6 +360,22 @@ window.addEventListener('DOMContentLoaded', function(){
 			icons_img[j].classList.remove('balcon_icons');
 		}
 		icons_img[0].classList.add('balcon_icons');
+		select_profile.value = 'tree';
+		calc_end.style.display = 'none';
+		calc_options.name = '';
+		calc_options.telephone = '';
+		calc_options.balconType = "type1";
+		calc_options.width = "";
+		calc_options.height = "";
+		calc_options.checkbox = "";
+		calc_options.select_profile = "tree";
+		input_calc_end[1].value = '';
+		input_calc_end[0].value = '';
+		input_calc1[1].value = '';
+		input_calc1[0].value = '';
+
+
+
 
 
 	
@@ -361,7 +396,7 @@ window.addEventListener('DOMContentLoaded', function(){
 	function ShowBalconType(d){
 		
 		HideBalconType(0);
-		big_icons[d].style.display = 'block';
+		big_icons[d].style.display = 'inline-block';
 	
 	}
 
@@ -376,15 +411,185 @@ window.addEventListener('DOMContentLoaded', function(){
 				icons_img[j].classList.remove('balcon_icons');
 			}
 			icons_img[i].classList.add('balcon_icons');
+			calc_options.balconType = icons[i].className;
 		});
 	}
 
 
 
+	//first inputs
+
+	for (let i = 0; i < input_calc1.length; i++){
+		input_calc1[i].onkeyup = function (input){
+      				  return this.value = this.value.replace(/[^\d]/g, '');
+		};
+		input_calc1[i].addEventListener('change', function(){
+			if (i == 0) {
+				calc_options.width = input_calc1[i].value;
+			} else if (i == 1){
+				calc_options.height = input_calc1[i].value;
+			}
+		})
+	}
+ 	
+	//Secondwindow
+ 	
+ 	next_btn.addEventListener('click', function(){	
+ 		
+ 		calc.style.display = 'none';
+ 		calc_profile.style.display = 'block';
+
+ 	})
+
+ 	calc_profile.addEventListener('change', function(){
+ 		
+ 		calc_options.select_profile = select_profile.value;
+ 	
+ 	})
+
+ 	for (let i = 0; i < checkbox_label.length; i++){
+ 		checkbox_label[i].addEventListener('click', function(){
+ 			
+ 			calc_options.checkbox = checkbox_profile[i].id;
+
+ 		})
+ 	}
+ 	
+ 	//closing second window
+
+ 	profile_calc_close.addEventListener('click', function(){
+ 		ShowBalconType(0);
+		for (let j = 0; j < icons.length; j++){
+			icons_img[j].classList.remove('balcon_icons');
+		}
+		icons_img[0].classList.add('balcon_icons');
+ 		calc_profile.style.display = 'none';
+ 		select_profile.value = 'tree'
+ 		calc_options.name = '';
+		calc_options.telephone = '';
+		calc_options.balconType = "type1";
+		calc_options.width = "";
+		calc_options.height = "";
+		calc_options.checkbox = "";
+		calc_options.select_profile = "tree";
+		input_calc_end[1].value = '';
+		input_calc_end[0].value = '';
+		input_calc1[1].value = '';
+		input_calc1[0].value = '';
+
+	})
+
+	//ThirdWindow
+	/*let message = new Object();
+		message.loading = "Загрузка...";
+		message.succes = "Спасибо! Скоро мы с вами свяжемся";
+		message.failure = "Что-то пошло не так...";*/
+
+	let form_calc_end = calc_end.getElementsByClassName('form')[0],
+		input_calc_end = form_calc_end.getElementsByTagName('input'),
+		cacl_end_close = calc_end.getElementsByClassName('popup_calc_end_close')[0];
 
 
+	next_btn_profile.addEventListener('click', function(){
+	
+		calc_end.style.display = 'block';
+		calc_profile.style.display = 'none'
+	
+	})
+
+	//запрет на ввод всего кроме цифр
+	input_calc_end[1].onkeyup = function (input){
+        return this.value = this.value.replace(/[^\d]/g, '');
+	};
+	for (let i = 0; i < input_calc_end.length; i++){
+		
+		input_calc_end[i].addEventListener('change', function(){
+			if (i == 0) {
+				calc_options.name = input_calc_end[i].value;
+			} else if (i == 1){
+				calc_options.telephone = input_calc_end[i].value;
+			}
+		})
+		
+	
+	}
+
+	//closing thirdwindow
+	cacl_end_close.addEventListener('click', function(){
+		ShowBalconType(0);
+		for (let j = 0; j < icons.length; j++){
+			icons_img[j].classList.remove('balcon_icons');
+		}
+		icons_img[0].classList.add('balcon_icons');
+		select_profile.value = 'tree'
+		calc_end.style.display = 'none';
+		calc_options.name = '';
+		calc_options.telephone = '';
+		calc_options.balconType = "type1";
+		calc_options.width = "";
+		calc_options.height = "";
+		calc_options.checkbox = "";
+		calc_options.select_profile = "tree";
+		input_calc_end[1].value = '';
+		input_calc_end[0].value = '';
+		input_calc1[1].value = '';
+		input_calc1[0].value = '';
 
 
+		
+
+	})
+	
+
+	form_calc_end.addEventListener('submit', function(event){
+		event.preventDefault();
+		form_calc_end.appendChild(statusMessage);
+		//AJAX
+			let request2 = new XMLHttpRequest();
+			request2.open("POST", 'server.php');
+
+			request2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+			let formData = new FormData(calc_options);
+
+			request2.send(formData);
+
+			request2.onreadystatechange = function() {
+				if (request2.readyState < 4) {
+					statusMessage.innerHTML = message.loading;
+				} else if (request2.readyState === 4) {
+					if (request2.status == 200 && request2.status < 300) {
+						statusMessage.innerHTML = message.succes;
+						//добавляем контент на страницу
+					}
+					else {
+						statusMessage.innerHTML = message.failure;
+
+					}
+				}
+			};
+		for (let j = 0; j < icons.length; j++){
+			icons_img[j].classList.remove('balcon_icons');
+		}
+		icons_img[0].classList.add('balcon_icons');
+		select_profile.value = 'tree'
+		calc_options.name = '';
+		calc_options.telephone = '';
+		calc_options.balconType = "type1";
+		calc_options.width = "";
+		calc_options.height = "";
+		calc_options.checkbox = "";
+		calc_options.select_profile = "tree";
+		input_calc_end[1].value = '';
+		input_calc_end[0].value = '';
+		input_calc1[1].value = '';
+		input_calc1[0].value = '';
+			
+
+	});
+	
+
+	console.log(calc_options);
 
 });
 
