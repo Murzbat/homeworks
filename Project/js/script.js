@@ -357,9 +357,9 @@ window.addEventListener('DOMContentLoaded', function(){
 		calc.style.display = 'none';
 		ShowBalconType(0);
 		for (let j = 0; j < icons.length; j++){
-			icons_img[j].classList.remove('balcon_icons');
+			icons_img[j].style.width = '20' + '%';
 		}
-		icons_img[0].classList.add('balcon_icons');
+		icons_img[0].style.width = '30' + '%';
 		select_profile.value = 'tree';
 		calc_end.style.display = 'none';
 		calc_options.name = '';
@@ -408,9 +408,9 @@ window.addEventListener('DOMContentLoaded', function(){
 			event.preventDefault();
 			ShowBalconType(i);
 			for (let j = 0; j < icons.length; j++){
-				icons_img[j].classList.remove('balcon_icons');
+				icons_img[j].style.width = '20'+'%';
 			}
-			icons_img[i].classList.add('balcon_icons');
+			icons_img[i].style.width = '30'+'%';
 			calc_options.balconType = icons[i].className;
 		});
 	}
@@ -460,9 +460,9 @@ window.addEventListener('DOMContentLoaded', function(){
  	profile_calc_close.addEventListener('click', function(){
  		ShowBalconType(0);
 		for (let j = 0; j < icons.length; j++){
-			icons_img[j].classList.remove('balcon_icons');
+			icons_img[j].style.width = '20' + '%';
 		}
-		icons_img[0].classList.add('balcon_icons');
+		icons_img[0].style.width = '30' + '%';
  		calc_profile.style.display = 'none';
  		select_profile.value = 'tree'
  		calc_options.name = '';
@@ -479,11 +479,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
 	})
 
-	//ThirdWindow
-	/*let message = new Object();
-		message.loading = "Загрузка...";
-		message.succes = "Спасибо! Скоро мы с вами свяжемся";
-		message.failure = "Что-то пошло не так...";*/
+	
 
 	let form_calc_end = calc_end.getElementsByClassName('form')[0],
 		input_calc_end = form_calc_end.getElementsByTagName('input'),
@@ -518,9 +514,9 @@ window.addEventListener('DOMContentLoaded', function(){
 	cacl_end_close.addEventListener('click', function(){
 		ShowBalconType(0);
 		for (let j = 0; j < icons.length; j++){
-			icons_img[j].classList.remove('balcon_icons');
+			icons_img[j].style.width = '20' + '%';
 		}
-		icons_img[0].classList.add('balcon_icons');
+		icons_img[0].style.width = '30' + '%';;
 		select_profile.value = 'tree'
 		calc_end.style.display = 'none';
 		calc_options.name = '';
@@ -569,9 +565,9 @@ window.addEventListener('DOMContentLoaded', function(){
 				}
 			};
 		for (let j = 0; j < icons.length; j++){
-			icons_img[j].classList.remove('balcon_icons');
+			icons_img[j].style.width = '20' + '%';
 		}
-		icons_img[0].classList.add('balcon_icons');
+		icons_img[0].style.width = '30' + '%';
 		select_profile.value = 'tree'
 		calc_options.name = '';
 		calc_options.telephone = '';
@@ -585,10 +581,139 @@ window.addEventListener('DOMContentLoaded', function(){
 		input_calc1[1].value = '';
 		input_calc1[0].value = '';
 			
+		let imagesGallery = document.getElementsByClassName('col-lg-3 col-md-4 col-sm-6 col-xs-12 text-center wow fadeIn'),
+		imagesBig = document.getElementsByClassName('big_images'),
+		imagesMain = document.getElementsByClassName('main_images'),
+		imagesRow = document.getElementsByClassName('big_image_cover');
+
+
+	for (let i = 0; i < imagesGallery.length; i++) {
+		imagesRow[i].style.top = 'auto';
+		imagesRow[i].style.left = 'auto';
+	}
+
+	function tabHide(elementNumber) {
+
+		for(let i = elementNumber; i < imagesGallery.length; i++) {
+			imagesBig[i].classList.remove('show');
+			imagesBig[i].classList.add('hide');
+			
+		}
+	}
+	tabHide(0);
+
+	function tabOpen(g) {
+			if (imagesBig[g].classList.contains('hide')) {
+				tabHide(0);
+				imagesBig[g].classList.remove('hide');
+				imagesBig[g].classList.add('show');
+				imagesBig[g].classList.add('back_pop_item');
+				imagesRow[g].style.display = "flex";
+
+			}
+	}
+
+	for(let j = 0; j < imagesGallery.length; j++) {
+		imagesMain[j].addEventListener('click', function() {
+			let target = event.target;
+			if(target.classList.contains('lupa') || target.classList.contains('main_images')) {
+				for(let i = 0; i < imagesGallery.length; i++) {
+					if (target == imagesGallery[i] || target == imagesMain[i]) {
+						tabOpen(i);
+						break;
+					}
+				}
+			}
+		});
+	}
+	for (let j = 0; j < imagesGallery.length; j++) {
+		imagesRow[j].addEventListener('click', function(elem) {
+			for (let i = 0; i < imagesGallery.length; i++) {
+				if (!isDescendant(imagesRow[i], elem.target)){
+				imagesRow[i].style.display = 'none';
+				}
+			}
+		});
+	}
+	//проверка на родителя
+	function isDescendant(parent, child) {
+	     var node = child.parentNode;
+	     while (node != null) {
+	         if (node == parent) {
+	             return true;
+	         }
+	         node = node.parentNode;
+	     }
+	     return false;
+	}
 
 	});
 	
+let imagesGallery = document.getElementsByClassName('col-lg-3 col-md-4 col-sm-6 col-xs-12 text-center wow fadeIn'),
+		imagesBig = document.getElementsByClassName('big_images'),
+		imagesMain = document.getElementsByClassName('main_images'),
+		imagesRow = document.getElementsByClassName('big_image_cover');
 
+
+	for (let i = 0; i < imagesGallery.length; i++) {
+		imagesRow[i].style.top = 'auto';
+		imagesRow[i].style.left = 'auto';
+	}
+
+	function tabHide(elementNumber) {
+
+		for(let i = elementNumber; i < imagesGallery.length; i++) {
+			imagesBig[i].classList.remove('show');
+			imagesBig[i].classList.add('hide');
+			
+		}
+	}
+	tabHide(0);
+
+	function tabOpen(g) {
+			if (imagesBig[g].classList.contains('hide')) {
+				tabHide(0);
+				imagesBig[g].classList.remove('hide');
+				imagesBig[g].classList.add('show');
+				imagesBig[g].classList.add('back_pop_item');
+				imagesRow[g].style.display = "flex";
+
+			}
+	}
+
+	for(let j = 0; j < imagesGallery.length; j++) {
+		imagesMain[j].addEventListener('click', function() {
+			let target = event.target;
+			if(target.classList.contains('lupa') || target.classList.contains('main_images')) {
+				for(let i = 0; i < imagesGallery.length; i++) {
+					if (target == imagesGallery[i] || target == imagesMain[i]) {
+						tabOpen(i);
+						break;
+					}
+				}
+			}
+		});
+	}
+	for (let j = 0; j < imagesGallery.length; j++) {
+		imagesRow[j].addEventListener('click', function(elem) {
+			for (let i = 0; i < imagesGallery.length; i++) {
+				if (!isDescendant(imagesRow[i], elem.target)){
+				imagesRow[i].style.display = 'none';
+				}
+			}
+		});
+	}
+	
+	function isDescendant(parent, child) {
+	     var node = child.parentNode;
+	     while (node != null) {
+	         if (node == parent) {
+	             return true;
+	         }
+	         node = node.parentNode;
+	     }
+	     return false;
+	}
 	console.log(calc_options);
 
 });
