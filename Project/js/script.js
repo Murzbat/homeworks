@@ -255,6 +255,51 @@ window.addEventListener('DOMContentLoaded', function(){
 		});
 	}
 
+    
+    //Second Tabs
+    let tabsDecoration = document.getElementsByClassName('decoration_item'),
+    	tabsItems = [],
+    	tabContent = [];
+    
+    for (let i = 0; i < tabsDecoration.length; i++){
+    	tabsItems[i] = tabsDecoration[i].getElementsByTagName('div')[0];
+    }
+
+    tabContent[0] = document.getElementsByClassName('internal')[0];
+    tabContent[1] = document.getElementsByClassName('external')[0];
+    tabContent[2] = document.getElementsByClassName('rising')[0];
+    tabContent[3] = document.getElementsByClassName('roof')[0];
+    console.log(tabsItems);
+    function HideTabDecorContent(e){
+		for (let i = e; i < tabContent.length; i++){
+			tabContent[i].style.display = 'none';
+		}
+	}
+    
+    HideTabDecorContent(1);
+	
+	function ShowTabDecorContent(f){
+		
+		HideTabDecorContent(0);
+		tabContent[f].style.display = 'block';
+
+	}
+
+	for (let i = 0; i < tabsDecoration.length; i++){
+		tabsDecoration[i].addEventListener('click', function(){
+			ShowTabDecorContent(i);
+			for (let j = 0; j < tabsDecoration.length; j++){	
+				
+				tabsItems[j].classList.remove('after_click');
+		
+			}
+		
+			tabsItems[i].classList.add('after_click');
+		
+		});
+	}
+
+
 
 	//Calc
 
