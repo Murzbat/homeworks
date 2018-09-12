@@ -783,6 +783,7 @@ textarea:focus {
   margin-bottom: 1rem;
 }
 .popup_calc_content .big_img img {
+  
   display: none;
   margin-bottom: 3rem;
   width: 30rem;

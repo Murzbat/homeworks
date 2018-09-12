@@ -1,4 +1,9 @@
 window.addEventListener('DOMContentLoaded', function(){
+
+	
+   
+  
+
 	
 // modal
 
@@ -9,7 +14,7 @@ window.addEventListener('DOMContentLoaded', function(){
 		phone = document.querySelectorAll('.phone_link'),
 		modalForm2 = document.querySelector('.popup');
 
-
+		
 	
 		// calling modal window
 		
@@ -18,7 +23,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			modalForm1.style.display = 'block';
 			document.body.style.overflow = 'hidden'; 
 
-		})
+		});
 		
 		
 		
@@ -28,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			if (event.target == modalForm1) {
 				modalForm1.style.display = 'none';
 			}
-		})
+		});
 
 
 		modalForm2.addEventListener('click', function(){
@@ -37,7 +42,7 @@ window.addEventListener('DOMContentLoaded', function(){
 				modalForm2.style.display = 'none';
 			}
 		
-		})
+		});
 
 		for (i = 0; i < phone.length; i++) {
 
@@ -49,7 +54,7 @@ window.addEventListener('DOMContentLoaded', function(){
 				modalForm2.style.display = 'block';
 				document.body.style.overflow = 'hidden'; 
 
-			})
+			});
 			
 			
 
@@ -60,7 +65,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			popup_close[1].addEventListener('click', function(){
 					modalForm1.style.display = 'none';
 					document.body.style.overflow = '';
-			})
+			});
 				
 			popup_close[0].addEventListener('click', function(){
 
@@ -68,10 +73,10 @@ window.addEventListener('DOMContentLoaded', function(){
 					modalForm2.style.display = 'none';
 					document.body.style.overflow = '';
 			
-			})
+			});
 
 
-		//Moda Forms
+		//Modal Forms
 
 		let message = new Object();
 		message.loading = "Загрузка...";
@@ -132,7 +137,7 @@ window.addEventListener('DOMContentLoaded', function(){
 						
 						}
 					}
-				}			
+				};
 
 			
 				for (let j = 0; j < 2; j++) {
@@ -141,7 +146,7 @@ window.addEventListener('DOMContentLoaded', function(){
 					//Очищаем поля ввода
 				}
 
-			})
+			});
 		}
 		
 	//Timer
@@ -167,11 +172,11 @@ window.addEventListener('DOMContentLoaded', function(){
 			'minutes': minutes,
 			'seconds': seconds
 
-		}
+		};
 	}	
 
 	function setClock(id, endtime) {
-		let timer = document.getElementById(id)
+		let timer = document.getElementById(id),
 			days = timer.querySelector('.days'),
 			hours = timer.querySelector('.hours'),
 			minutes = timer.querySelector('.minutes'),
@@ -192,7 +197,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			}
 
 			updateClock();
-			var timeInterval = setInterval(updateClock,1000)
+			var timeInterval = setInterval(updateClock,1000);
 
 	}
 
@@ -247,7 +252,7 @@ window.addEventListener('DOMContentLoaded', function(){
 		
 		tab[i].classList.add('active');
 		
-		})
+		});
 	}
 
 
@@ -255,16 +260,86 @@ window.addEventListener('DOMContentLoaded', function(){
 
 	let glazing_price = document.getElementsByClassName('glazing_price'),
 		calc_btn = [],
-		calc = document.getElementsByClassName('popup_calc')[0];
+		calc = document.getElementsByClassName('popup_calc')[0],
+		calc_close = document.getElementsByClassName('popup_calc_close')[0],
+		balcon_icons = document.getElementsByClassName('balcon_icons')[0],
+		icons = balcon_icons.getElementsByTagName('a'),
+		big_img = document.getElementsByClassName('big_img')[0],
+		big_icons = big_img.getElementsByTagName('img'),
+		icons_img = [];
+
+	for (let i = 0; i < icons.length; i++){
+		
+		icons_img[i] = icons[i].getElementsByTagName('img')[0];
+	
+	}
 
 	for (let i = 0; i < glazing_price.length; i++){
-		calc_btn[i] = glazing_price[i].getElementsByClassName('button')[0];
+		
+		calc_btn[i] = glazing_price[i].getElementsByTagName('button')[0];
 	}
-	console.log(calc_btn);
-	for (let i = 0; i < glazing_price; i++){
+	
+
+	for (let i = 0; i < glazing_price.length; i++) {
 		calc_btn[i].addEventListener('click', function(){
+			
 			calc.style.display = 'block';
-		})
+
+		});
 	}
-})
+
+	calc_close.addEventListener('click', function(){
+		
+		calc.style.display = 'none';
+		ShowBalconType(0);
+		for (let j = 0; j < icons.length; j++){
+			icons_img[j].classList.remove('balcon_icons');
+		}
+		icons_img[0].classList.add('balcon_icons');
+
+
+	
+	});
+
+	//types of balcons
+
+	function HideBalconType(c){
+		
+		for (let i = c; i < icons.length; i++) {
+			big_icons[i].style.display = 'none';
+		}
+	
+	}
+
+	HideBalconType(1);
+
+	function ShowBalconType(d){
+		
+		HideBalconType(0);
+		big_icons[d].style.display = 'block';
+	
+	}
+
+
+
+	for (let i = 0; i < icons.length; i++){
+			
+		icons[i].addEventListener('click', function(){
+			event.preventDefault();
+			ShowBalconType(i);
+			for (let j = 0; j < icons.length; j++){
+				icons_img[j].classList.remove('balcon_icons');
+			}
+			icons_img[i].classList.add('balcon_icons');
+		});
+	}
+
+
+
+
+
+
+
+
+});
 
