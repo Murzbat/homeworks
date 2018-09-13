@@ -237,19 +237,25 @@ window.addEventListener('DOMContentLoaded', function(){
 
 	}
 
-	for (let i = 0; i < glazing_block.length; i++){
-		glazing_block[i].addEventListener('click', function(){
-			ShowTabContent(i);
-		for (let j = 0; j < glazing_block.length; j++){	
+	glazing_slider.addEventListener('click', function(event){
+		var target = event.target;
+
+		if (target.nodeName == 'A'){
+			for (var i = 0; i < tab.length; i++) {
+				if (target == tab[i]) {
+					ShowTabContent(i);
+					for (let j = 0; j < glazing_block.length; j++){	
 			
-			tab[j].classList.remove('active');
+							tab[j].classList.remove('active');
 		
+					}
+		
+					tab[i].classList.add('active');
+					break;
+				}
+			}
 		}
-		
-		tab[i].classList.add('active');
-		
-		});
-	}
+	})
 
     
     //Second Tabs
