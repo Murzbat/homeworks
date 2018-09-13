@@ -261,8 +261,9 @@ window.addEventListener('DOMContentLoaded', function(){
     //Second Tabs
    var tabsDecoration = document.getElementsByClassName('decoration_item'),
     	tabsItems = [],
-    	tabContent = [];
-    
+    	tabContent = [],
+    	decoration_slider = document.getElementsByClassName('decoration_slider')[0],
+    	tabs_butons_a = decoration_slider.getElementsByTagName('a');
     for (let i = 0; i < tabsDecoration.length; i++){
     	tabsItems[i] = tabsDecoration[i].getElementsByTagName('div')[0];
     }
@@ -271,7 +272,7 @@ window.addEventListener('DOMContentLoaded', function(){
     tabContent[1] = document.getElementsByClassName('external')[0];
     tabContent[2] = document.getElementsByClassName('rising')[0];
     tabContent[3] = document.getElementsByClassName('roof')[0];
-    console.log(tabsItems);
+
     function HideTabDecorContent(e){
 		for (let i = e; i < tabContent.length; i++){
 			tabContent[i].style.display = 'none';
@@ -284,12 +285,33 @@ window.addEventListener('DOMContentLoaded', function(){
 		
 		HideTabDecorContent(0);
 		tabContent[f].style.display = 'block';
-		console.log(f);
-		console.log(tabContent[f]);
 
 	}
+	console.log(tabsItems[1]);
 
-	for (let i = 0; i < tabsDecoration.length; i++){
+	decoration_slider.addEventListener('click', function(event){
+		 target = event.target;
+
+		if (target.nodeName == 'A'){
+			console.log(target.nodeName);
+			for (var i = 0; i < tabsItems.length; i++) {
+				if (target == tabs_butons_a[i]) {
+					ShowTabDecorContent(i);
+					for (let j = 0; j < tabsDecoration.length; j++){	
+				
+						tabsItems[j].classList.remove('after_click');
+		
+					}
+		
+					tabsItems[i].classList.add('after_click');
+					break;
+				}
+			}
+		}
+	})
+
+
+	/*for (let i = 0; i < tabsDecoration.length; i++){
 		tabsDecoration[i].addEventListener('click', function(){
 			ShowTabDecorContent(i);
 			for (let j = 0; j < tabsDecoration.length; j++){	
@@ -301,7 +323,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			tabsItems[i].classList.add('after_click');
 		
 		});
-	}
+	}*/
 
 
 
