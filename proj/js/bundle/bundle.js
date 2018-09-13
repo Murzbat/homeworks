@@ -506,18 +506,12 @@ module.exports = modalWindow;
 },{}],6:[function(require,module,exports){
 function tab() {
   // Tabs
-  let glazing_block = document.getElementsByClassName('glazing_block'),
-      glazing_content = [],
-      tab = [],
-      glazing_slider = document.getElementsByClassName('glazing_slider')[0];
-
-  for (let i = 0; i < 5; i++) {
-    glazing_content[i] = document.getElementById('tab' + i);
-    tab[i] = glazing_block[i].getElementsByTagName('a')[0];
-  }
+ let glazing_block = document.getElementsByClassName('glazing_block'),
+      glazing_content = document.getElementsByClassName('tab1'),
+      glazing_slider = document.getElementsByClassName('glazing_slider');
 
   function HideTabContent(a) {
-    for (let i = a; i < 5; i++) {
+    for (let i = a; i < glazing_content.length; i++) {
       glazing_content[i].style.display = 'none';
     }
   }
@@ -534,10 +528,9 @@ function tab() {
       ShowTabContent(i);
 
       for (let j = 0; j < glazing_block.length; j++) {
-        tab[j].classList.remove('active');
+        glazing_block[j].classList.remove('active');
       }
-
-      tab[i].classList.add('active');
+      glazing_block[i].classList.add('active');
     });
   } //Second Tabs
 
